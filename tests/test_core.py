@@ -58,7 +58,7 @@ def test_network_and_stop_lookup(client):
 def test_vehicles_are_on_their_route_and_move(client, clock):
     first = {v["id"]: v for v in client.get("/api/vehicles").json["vehicles"]}
     assert first and all(v["route_id"] in ("R1", "R2", "R3") for v in first.values())
-    assert 41.85 < min(v["lat"] for v in first.values()) and max(v["lat"] for v in first.values()) < 41.91
+    assert 43.65 < min(v["lat"] for v in first.values()) and max(v["lat"] for v in first.values()) < 43.70   # central Toronto
     clock.sec += 60
     second = {v["id"]: v for v in client.get("/api/vehicles").json["vehicles"]}
     moved = [i for i in first if i in second and (first[i]["lat"], first[i]["lon"]) != (second[i]["lat"], second[i]["lon"])]
@@ -108,7 +108,7 @@ def test_planner_direct_and_transfer(client):
     assert direct[0]["transfers"] == 0 and direct[0]["legs"][0]["route_id"] == "R1"
     assert direct[0]["label"] == "Fastest"
     leg = direct[0]["legs"][0]
-    assert leg["stops_between"] == 5 and leg["path"][0] == [41.9, -87.63] and leg["path"][-1] == [41.86, -87.63]
+    assert leg["stops_between"] == 5 and leg["path"][0] == [43.692, -79.39] and leg["path"][-1] == [43.652, -79.39]
     assert leg["arrive_in_sec"] > leg["depart_in_sec"] >= 0
 
     trip = client.get("/api/plan?from=W01&to=N01").json["options"]            # blue line -> transfer at Central -> red line north

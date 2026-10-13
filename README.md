@@ -8,7 +8,7 @@ sample trip data, and the planner shows route alternatives (direct and one-trans
 
 **Stack:** Python, Flask (+ flask-sock WebSockets), JavaScript, Leaflet.js, OpenStreetMap tiles, PostgreSQL (SQLAlchemy)
 
-> The network (3 routes, 15 stops, timetables) is **fictional**; only the map tiles are real. No live transit feed is used.
+> The network (3 routes, 15 stops, timetables) is **fictional** and laid out over central Toronto, Canada; only the map tiles are real. No live transit feed is used.
 
 ## How it works
 | Part | Where |
@@ -35,6 +35,8 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python wsgi.py                   # http://localhost:5001
 ```
+After editing `data/network.json` (or re-running the script), reload the database: `docker compose down -v` (or delete `instance/transit.db`).
+
 `SIM_SPEED=10` fast-forwards the simulation; `SIM_START=08:00` starts the clock at a given time (default: real time of day).
 
 ## API
