@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TransitLive</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>TransitLive</h1>
+    <span id="clock">--:--:--</span>
+    <span id="conn" class="conn off">connecting…</span>
+  </header>
+  <div id="layout">
+    <aside id="panel">
+      <section>
+        <h2>Routes</h2>
+        <div id="routes"></div>
+        <div id="alerts"></div>
+      </section>
+      <section>
+        <h2>Stops</h2>
+        <input id="stopSearch" type="search" placeholder="Find a stop…" autocomplete="off">
+        <ul id="stopResults"></ul>
+        <div id="stopInfo"></div>
+      </section>
+      <section>
+        <h2>Plan a trip</h2>
+        <div class="plan-form">
+          <select id="from"></select>
+          <select id="to"></select>
+          <button id="swap" title="Swap" aria-label="Swap origin and destination">⇅</button>
+          <button id="go">Find routes</button>
+        </div>
+        <div id="options"></div>
+      </section>
+    </aside>
+    <div id="map" role="application" aria-label="Transit map"></div>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

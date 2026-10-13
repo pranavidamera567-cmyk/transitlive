@@ -1,0 +1,6 @@
+Flask>=3.0
+flask-sock>=0.7
+SQLAlchemy>=2.0
+psycopg2-binary>=2.9
+gunicorn>=21.2
+pytest>=8.0
